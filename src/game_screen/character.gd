@@ -17,4 +17,16 @@ func anvil_down() -> void:
 
 func anvil_idle() -> void:
 	_animation_player.play("anvil_idle")
+
+
+func bellows_up() -> void:
+	_animation_player.play("bellows_up")
+
+
+func bellows_down() -> void:
+	_animation_player.play("bellows_down")
+
+
+func bellows_idle() -> void:
+	_animation_player.play("bellows_idle")
 	
