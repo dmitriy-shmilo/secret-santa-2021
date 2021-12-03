@@ -68,7 +68,7 @@ func anvil_idle() -> void:
 	if _state ==  CharacterState.ANVIL_IDLE:
 		return
 
-	if _state in [CharacterState.CONFUSED, CharacterState.ANVIL_DOWN]:
+	if _state in [CharacterState.CONFUSED, CharacterState.ANVIL_DOWN, CharacterState.BELLOWS_IDLE]:
 		_animation_player.play("anvil_idle")
 		_state = CharacterState.ANVIL_IDLE
 		return
@@ -98,7 +98,8 @@ func bellows_idle() -> void:
 	if _state == CharacterState.BELLOWS_IDLE:
 		return
 
-	if _state in [CharacterState.CONFUSED, CharacterState.BELLOWS_DOWN]:
+	# TODO: introduce intermediate states
+	if _state in [CharacterState.CONFUSED, CharacterState.BELLOWS_DOWN, CharacterState.ANVIL_IDLE]:
 		_animation_player.play("bellows_idle")
 		_state = CharacterState.BELLOWS_IDLE
 		return
