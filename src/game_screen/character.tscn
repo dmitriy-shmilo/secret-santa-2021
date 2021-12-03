@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 32, 65 ) ]
+"values": [ Rect2( 0, 0, 32, 64 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:position")
@@ -287,7 +287,7 @@ position = Vector2( -2, 0 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -32 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 32, 65 )
+region_rect = Rect2( 0, 0, 32, 64 )
 
 [node name="Emotion" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
