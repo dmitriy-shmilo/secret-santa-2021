@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/characters.png" type="Texture" id=1]
 [ext_resource path="res://game_screen/character.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -29,10 +30,34 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( -2, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Emotion:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -8, -14 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Emotion:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "anvil_down"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
@@ -56,6 +81,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -10 ), Vector2( 0, 0 ), Vector2( 0, -5 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "anvil_idle"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -198,6 +237,48 @@ tracks/1/keys = {
 "values": [ Vector2( -2, 0 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "confused"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Emotion:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -8, -14 ), Vector2( -8, -32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Emotion:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.33, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "unconfuse"
+} ]
+}
+
 [node name="Character" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -208,6 +289,13 @@ offset = Vector2( 0, -32 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 65 )
 
+[node name="Emotion" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -8, -14 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 496, 0, 16, 16 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/anvil_down = SubResource( 2 )
@@ -216,3 +304,4 @@ anims/anvil_up = SubResource( 4 )
 anims/bellows_down = SubResource( 7 )
 anims/bellows_idle = SubResource( 5 )
 anims/bellows_up = SubResource( 6 )
+anims/confused = SubResource( 8 )

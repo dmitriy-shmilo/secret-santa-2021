@@ -23,6 +23,9 @@ func _ready() -> void:
 
 
 func confuse() -> void:
+	if _animation_player.is_playing():
+		return
+
 	if _state == CharacterState.CONFUSED:
 		print("Prevented double-confuse")
 		return
@@ -33,11 +36,14 @@ func confuse() -> void:
 
 
 func unconfuse() -> void:
-	match _previous_state:
-		CharacterState.ANVIL_DOWN, CharacterState.ANVIL_UP, CharacterState.ANVIL_UP:
-			anvil_idle()
-		CharacterState.BELLOWS_DOWN, CharacterState.BELLOWS_UP, CharacterState.BELLOWS_UP:
-			bellows_idle()
+	_state = _previous_state
+	return
+# TODO: consider returning to idle state instead
+#	match _previous_state:
+#		CharacterState.ANVIL_DOWN, CharacterState.ANVIL_UP, CharacterState.ANVIL_IDLE:
+#			anvil_idle()
+#		CharacterState.BELLOWS_DOWN, CharacterState.BELLOWS_UP, CharacterState.BELLOWS_IDLE:
+#			bellows_idle()
 
 
 func anvil_up() -> void:
@@ -59,6 +65,9 @@ func anvil_down() -> void:
 
 
 func anvil_idle() -> void:
+	if _state ==  CharacterState.ANVIL_IDLE:
+		return
+
 	if _state in [CharacterState.CONFUSED, CharacterState.ANVIL_DOWN]:
 		_animation_player.play("anvil_idle")
 		_state = CharacterState.ANVIL_IDLE
@@ -86,6 +95,9 @@ func bellows_down() -> void:
 
 
 func bellows_idle() -> void:
+	if _state == CharacterState.BELLOWS_IDLE:
+		return
+
 	if _state in [CharacterState.CONFUSED, CharacterState.BELLOWS_DOWN]:
 		_animation_player.play("bellows_idle")
 		_state = CharacterState.BELLOWS_IDLE
