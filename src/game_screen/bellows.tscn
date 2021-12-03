@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/objects.png" type="Texture" id=1]
+[ext_resource path="res://game_screen/bellows.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 48, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "bellows_down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 48, 0, 48, 32 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "bellows_up"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 48, 32 ) ]
+}
+
+[node name="Bellows" type="Sprite"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 48, 32 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/bellows_down = SubResource( 2 )
+anims/bellows_up = SubResource( 3 )

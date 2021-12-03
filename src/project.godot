@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "Anvil",
+"language": "GDScript",
+"path": "res://game_screen/anvil.gd"
+}, {
+"base": "Sprite",
+"class": "Bellows",
+"language": "GDScript",
+"path": "res://game_screen/bellows.gd"
+}, {
 "base": "Node2D",
 "class": "Character",
 "language": "GDScript",
@@ -45,6 +55,8 @@ _global_script_classes=[ {
 "path": "res://title_screen/tutorial/tutorial_scene.gd"
 } ]
 _global_script_class_icons={
+"Anvil": "",
+"Bellows": "",
 "Character": "",
 "CreditsScene": "",
 "Fader": "",
