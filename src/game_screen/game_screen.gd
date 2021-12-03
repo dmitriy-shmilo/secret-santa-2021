@@ -5,7 +5,8 @@ onready var _pause_container: ColorRect = $"Gui/PauseContainer"
 onready var _anvil_slot: Node2D = $"AnvilSlot"
 onready var _bellows_slot: Node2D = $"BellowsSlot"
 onready var _character: Character = $"Character"
-
+onready var _anvil: Anvil = $"Anvil"
+onready var _bellows: Bellows = $"Bellows"
 
 var _is_at_anvil = true
 
@@ -18,15 +19,17 @@ func _unhandled_input(event):
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left"):
-		_character.global_position = _bellows_slot.global_position
 		_is_at_anvil = false
+		_anvil.anvil_leave()
 		_character.bellows_idle()
+		_character.global_position = _bellows_slot.global_position
 		return
 	
 	if Input.is_action_just_pressed("right"):
-		_character.global_position = _anvil_slot.global_position
 		_is_at_anvil = true
+		_anvil.anvil_use()
 		_character.anvil_idle()
+		_character.global_position = _anvil_slot.global_position
 		return
 	
 	if Input.is_action_just_pressed("up"):
@@ -34,6 +37,7 @@ func _process(delta: float) -> void:
 			_character.anvil_up()
 		else:
 			_character.bellows_up()
+			_bellows.bellows_up()
 	
 	
 	if Input.is_action_just_pressed("down"):
@@ -41,6 +45,7 @@ func _process(delta: float) -> void:
 			_character.anvil_down()
 		else:
 			_character.bellows_down()
+			_bellows.bellows_down()
 
 
 func _on_QuitButton_pressed():
