@@ -16,6 +16,8 @@ var _is_at_anvil = true
 var _has_order = false
 var _max_order_progress = 5
 var _order_progress = 0
+var _max_heat = 5
+var _heat = 0
 
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
@@ -24,6 +26,8 @@ func _unhandled_input(event):
 
 
 func _process(_delta: float) -> void:
+	# TODO: move these actions to character 
+	# TODO: get rid of _is_at_anvil
 	if Input.is_action_just_pressed("left"):
 		_is_at_anvil = false
 		_anvil.anvil_leave()
@@ -51,7 +55,6 @@ func _process(_delta: float) -> void:
 			_character.anvil_down()
 		else:
 			_character.bellows_down()
-			_bellows.bellows_down()
 
 
 func _order_increase_progress() -> void:
@@ -66,6 +69,20 @@ func _order_increase_progress() -> void:
 	_gui.order_progress(_order_progress, _max_order_progress)
 
 
+func _heat_increase() -> void:
+	if not _has_order:
+		printerr("Can't heat with empty order")
+		return
+	
+	_heat += 1
+	if _heat > _max_heat:
+		#TODO: melt and reset order
+		print("Overheat")
+		return
+	
+	_gui.heat_increase(_heat, _max_heat)
+
+
 func _order_item() -> void:
 	if _has_order:
 		printerr("Order is already in progress")
@@ -73,11 +90,13 @@ func _order_item() -> void:
 	
 	_max_order_progress = 5
 	_order_progress = 0
+	_max_heat = 5
+	_heat = 0
 	_anvil.anvil_reset()
 	_has_order = true
 	_animation_player.play("client_enter")
 	_gui.order_progress(_order_progress, _max_order_progress)
-	_gui.show_order()
+	_gui.reset_for_order()
 	
 
 
@@ -112,3 +131,8 @@ func _on_OrderDelay_timeout():
 func _on_Character_progress_made():
 	_order_increase_progress()
 	_anvil.anvil_down()
+
+
+func _on_Character_heat_increased():
+	_heat_increase()
+	_bellows.bellows_down()

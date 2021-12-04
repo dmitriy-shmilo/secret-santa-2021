@@ -26,6 +26,7 @@ enum CharacterState {
 }
 
 signal progress_made()
+signal heat_increased()
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
@@ -108,14 +109,15 @@ func bellows_up() -> void:
 
 
 func bellows_down() -> void:
-	if _state == CharacterState.BELLOWS_UP:
-		_animation_player.play("bellows_down")
-		_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
-		_voice_player.play()
-		_state = CharacterState.BELLOWS_DOWN
+	if _state != CharacterState.BELLOWS_UP:
+		confuse()
 		return
-	
-	confuse()
+
+	_animation_player.play("bellows_down")
+	_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
+	_voice_player.play()
+	_state = CharacterState.BELLOWS_DOWN
+	emit_signal("heat_increased")
 
 
 func bellows_idle() -> void:
