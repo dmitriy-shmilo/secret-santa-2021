@@ -6,7 +6,12 @@ enum AnvilState {
 	LEFT
 }
 
+const DOWN_SOUNDS = [
+	preload("res://assets/audio/ding.wav")
+]
+
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
+onready var _audio_player: AudioStreamPlayer = $"AudioPlayer"
 
 var _state = AnvilState.IN_USE
 
@@ -22,3 +27,8 @@ func anvil_use() -> void:
 func anvil_leave() -> void:
 	_state = AnvilState.LEFT
 	_animation_player.play("anvil_leave")
+
+
+func anvil_down() -> void:
+	_audio_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
+	_audio_player.play()

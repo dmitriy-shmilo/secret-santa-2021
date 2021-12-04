@@ -61,3 +61,5 @@ script = ExtResource( 2 )
 anims/RESET = SubResource( 1 )
 anims/anvil_leave = SubResource( 3 )
 anims/anvil_use = SubResource( 2 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]

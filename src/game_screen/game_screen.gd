@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("down"):
 		if _is_at_anvil:
 			_character.anvil_down()
+			_anvil.anvil_down()
 		else:
 			_character.bellows_down()
 			_bellows.bellows_down()
