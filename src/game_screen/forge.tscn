@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/objects.png" type="Texture" id=1]
 [ext_resource path="res://game_screen/forge.gd" type="Script" id=2]
@@ -6,6 +6,15 @@
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.2112, 0.22, 0.216773, 0.713726, 1, 1, 1, 0.321569 )
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/particles.png-0964d1b853d1adedd72657848e4d5083.stex"
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.132353, 0.306818 ), 0.0, 0.154546, 0, 0, Vector2( 1, 0 ), -0.166909, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.941176, 0.368627, 0.14902, 0.866667, 0.976563, 0.962675, 0.087738, 0.321569 )
 
 [node name="Forge" type="Sprite"]
 texture = ExtResource( 1 )
@@ -15,9 +24,23 @@ region_rect = Rect2( 0, 64, 48, 48 )
 script = ExtResource( 2 )
 
 [node name="Smoke" type="CPUParticles2D" parent="."]
-position = Vector2( 0, -50 )
+position = Vector2( 0, -51 )
 texture = ExtResource( 3 )
 emission_shape = 1
 emission_sphere_radius = 3.0
-gravity = Vector2( 0, -10 )
+direction = Vector2( 0, 1 )
+spread = 180.0
+gravity = Vector2( 0, -20 )
+initial_velocity = 10.0
 color_ramp = SubResource( 1 )
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -12 )
+amount = 20
+texture = SubResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 6, 2 )
+gravity = Vector2( 0, -20 )
+scale_amount = 0.3
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )
