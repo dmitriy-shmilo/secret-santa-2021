@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/fader.gd"
 }, {
+"base": "Sprite",
+"class": "Forge",
+"language": "GDScript",
+"path": "res://game_screen/forge.gd"
+}, {
 "base": "Button",
 "class": "KeyBindingButton",
 "language": "GDScript",
@@ -60,6 +65,7 @@ _global_script_class_icons={
 "Character": "",
 "CreditsScene": "",
 "Fader": "",
+"Forge": "",
 "KeyBindingButton": "",
 "SettingsScene": "",
 "TitleScene": "",

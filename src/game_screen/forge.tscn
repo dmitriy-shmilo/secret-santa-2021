@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/objects.png" type="Texture" id=1]
+[ext_resource path="res://game_screen/forge.gd" type="Script" id=2]
+[ext_resource path="res://assets/particles.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.2112, 0.22, 0.216773, 0.713726, 1, 1, 1, 0.321569 )
+
+[node name="Forge" type="Sprite"]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -24 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 48, 48 )
+script = ExtResource( 2 )
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -50 )
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector2( 0, -10 )
+color_ramp = SubResource( 1 )
