@@ -319,3 +319,5 @@ anims/bellows_down = SubResource( 7 )
 anims/bellows_idle = SubResource( 5 )
 anims/bellows_up = SubResource( 6 )
 anims/confused = SubResource( 8 )
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="."]

@@ -1,6 +1,18 @@
 extends Node2D
 class_name Character
 
+const UP_SOUNDS = [
+	preload("res://assets/audio/up1.wav"),
+	preload("res://assets/audio/up2.wav"),
+	preload("res://assets/audio/up3.wav"),
+]
+
+const DOWN_SOUNDS = [
+	preload("res://assets/audio/down1.wav"),
+	preload("res://assets/audio/down2.wav"),
+	preload("res://assets/audio/down3.wav"),
+]
+
 enum CharacterState {
 	CONFUSED,
 
@@ -14,6 +26,7 @@ enum CharacterState {
 }
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
+onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
 
 var _state = CharacterState.ANVIL_IDLE
 var _previous_state = CharacterState.CONFUSED
@@ -49,6 +62,8 @@ func unconfuse() -> void:
 func anvil_up() -> void:
 	if _state == CharacterState.ANVIL_IDLE:
 		_animation_player.play("anvil_up")
+		_voice_player.stream = UP_SOUNDS[randi() % UP_SOUNDS.size()]
+		_voice_player.play()
 		_state = CharacterState.ANVIL_UP
 		return
 	
@@ -58,6 +73,8 @@ func anvil_up() -> void:
 func anvil_down() -> void:
 	if _state == CharacterState.ANVIL_UP:
 		_animation_player.play("anvil_down")
+		_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
+		_voice_player.play()
 		_state = CharacterState.ANVIL_DOWN
 		return
 	
@@ -79,6 +96,8 @@ func anvil_idle() -> void:
 func bellows_up() -> void:
 	if _state == CharacterState.BELLOWS_IDLE:
 		_animation_player.play("bellows_up")
+		_voice_player.stream = UP_SOUNDS[randi() % UP_SOUNDS.size()]
+		_voice_player.play()
 		_state = CharacterState.BELLOWS_UP
 		return
 	
@@ -88,6 +107,8 @@ func bellows_up() -> void:
 func bellows_down() -> void:
 	if _state == CharacterState.BELLOWS_UP:
 		_animation_player.play("bellows_down")
+		_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
+		_voice_player.play()
 		_state = CharacterState.BELLOWS_DOWN
 		return
 	
