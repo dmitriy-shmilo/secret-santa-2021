@@ -64,6 +64,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Client")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_waiting"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "client_leave"
@@ -91,6 +105,23 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Client")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "satisfy"
+}, {
+"args": [  ],
+"method": "go_offscreen"
+} ]
 }
 
 [node name="GameScreen" type="Node2D"]
@@ -161,8 +192,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MoodLabel" type="Label" parent="Gui"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnvilSlot" type="Node2D" parent="."]
-position = Vector2( 190, 128 )
+position = Vector2( 196, 128 )
 
 [node name="BellowsSlot" type="Node2D" parent="."]
 position = Vector2( 107, 128 )
@@ -180,7 +218,7 @@ position = Vector2( 131, 112 )
 position = Vector2( 161, 128 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
-position = Vector2( 190, 128 )
+position = Vector2( 196, 128 )
 
 [node name="Client" parent="." instance=ExtResource( 8 )]
 position = Vector2( 339, 128 )
@@ -197,4 +235,5 @@ autostart = true
 
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="mood_changed" from="Client" to="." method="_on_Client_mood_changed"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]

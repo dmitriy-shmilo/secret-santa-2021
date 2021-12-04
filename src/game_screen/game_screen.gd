@@ -6,6 +6,7 @@ onready var _pause_container: ColorRect = $"Gui/PauseContainer"
 onready var _anvil_slot: Node2D = $"AnvilSlot"
 onready var _bellows_slot: Node2D = $"BellowsSlot"
 onready var _character: Character = $"Character"
+onready var _client: Client = $"Client"
 onready var _anvil: Anvil = $"Anvil"
 onready var _bellows: Bellows = $"Bellows"
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
@@ -22,7 +23,7 @@ func _unhandled_input(event):
 		_pause_container.visible = true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left"):
 		_is_at_anvil = false
 		_anvil.anvil_leave()
@@ -49,13 +50,13 @@ func _process(delta: float) -> void:
 		if _is_at_anvil:
 			_character.anvil_down()
 			_anvil.anvil_down()
-			_order_progress()
+			_order_increase_progress()
 		else:
 			_character.bellows_down()
 			_bellows.bellows_down()
 
 
-func _order_progress() -> void:
+func _order_increase_progress() -> void:
 	if not _has_order:
 		printerr("Can't progress empty order")
 		return
@@ -108,3 +109,7 @@ func _on_ContinueButton_pressed():
 
 func _on_OrderDelay_timeout():
 	_order_item()
+
+
+func _on_Client_mood_changed(current, total):
+	_gui.mood_update(current, total)
