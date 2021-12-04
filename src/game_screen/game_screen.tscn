@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game_screen/game_screen.gd" type="Script" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -9,6 +9,15 @@
 [ext_resource path="res://game_screen/forge.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game_screen/client.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game_screen/gui.gd" type="Script" id=9]
+[ext_resource path="res://assets/ui.png" type="Texture" id=10]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 10 )
+region = Rect2( 480, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 10 )
+region = Rect2( 496, 48, 16, 16 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -180,42 +189,78 @@ margin_right = 312.0
 margin_bottom = 20.0
 text = "Continue"
 
-[node name="OrderLabel" type="Label" parent="Gui"]
-visible = false
+[node name="HeatLevel" type="TextureProgress" parent="Gui"]
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -20.0
-margin_right = 20.0
-margin_bottom = 14.0
-text = "ORDER"
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = -82.0
+margin_right = 19.0
+margin_bottom = -53.0
+value = 100.0
+texture_under = SubResource( 4 )
+texture_progress = SubResource( 5 )
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 7
+stretch_margin_top = 7
+stretch_margin_right = 7
+stretch_margin_bottom = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoodLabel" type="Label" parent="Gui"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="HeatIcon" type="Sprite" parent="Gui"]
+position = Vector2( 170, 89 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 448, 64, 16, 16 )
+
+[node name="OrderProgress" type="TextureProgress" parent="Gui"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -82.0
+margin_right = 80.0
+margin_bottom = -53.0
+texture_under = SubResource( 4 )
+texture_progress = SubResource( 5 )
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 7
+stretch_margin_top = 7
+stretch_margin_right = 7
+stretch_margin_bottom = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ProgressIcon" type="Sprite" parent="Gui"]
+position = Vector2( 232, 91 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 432, 64, 16, 16 )
 
 [node name="AnvilSlot" type="Node2D" parent="."]
 position = Vector2( 196, 128 )
 
 [node name="BellowsSlot" type="Node2D" parent="."]
-position = Vector2( 107, 128 )
+position = Vector2( 92, 128 )
 
 [node name="Interior" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 centered = false
 
 [node name="Bellows" parent="." instance=ExtResource( 6 )]
-position = Vector2( 131, 112 )
+position = Vector2( 116, 112 )
 
 [node name="Anvil" parent="." instance=ExtResource( 5 )]
 
 [node name="Forge" parent="." instance=ExtResource( 7 )]
-position = Vector2( 161, 128 )
+position = Vector2( 146, 128 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
 position = Vector2( 196, 128 )
@@ -235,5 +280,5 @@ autostart = true
 
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
-[connection signal="mood_changed" from="Client" to="." method="_on_Client_mood_changed"]
+[connection signal="progress_made" from="Character" to="." method="_on_Character_progress_made"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]

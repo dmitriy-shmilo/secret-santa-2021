@@ -25,6 +25,8 @@ enum CharacterState {
 	BELLOWS_DOWN
 }
 
+signal progress_made()
+
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
 
@@ -71,14 +73,15 @@ func anvil_up() -> void:
 
 
 func anvil_down() -> void:
-	if _state == CharacterState.ANVIL_UP:
-		_animation_player.play("anvil_down")
-		_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
-		_voice_player.play()
-		_state = CharacterState.ANVIL_DOWN
+	if _state != CharacterState.ANVIL_UP:
+		confuse()
 		return
-	
-	confuse()
+
+	_animation_player.play("anvil_down")
+	_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
+	_voice_player.play()
+	_state = CharacterState.ANVIL_DOWN
+	emit_signal("progress_made")	
 
 
 func anvil_idle() -> void:

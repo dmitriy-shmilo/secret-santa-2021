@@ -49,8 +49,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("down"):
 		if _is_at_anvil:
 			_character.anvil_down()
-			_anvil.anvil_down()
-			_order_increase_progress()
 		else:
 			_character.bellows_down()
 			_bellows.bellows_down()
@@ -111,5 +109,6 @@ func _on_OrderDelay_timeout():
 	_order_item()
 
 
-func _on_Client_mood_changed(current, total):
-	_gui.mood_update(current, total)
+func _on_Character_progress_made():
+	_order_increase_progress()
+	_anvil.anvil_down()
