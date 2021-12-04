@@ -74,6 +74,7 @@ func _order_item() -> void:
 	
 	_max_order_progress = 5
 	_order_progress = 0
+	_anvil.anvil_reset()
 	_has_order = true
 	_animation_player.play("client_enter")
 	_gui.order_progress(_order_progress, _max_order_progress)
@@ -90,6 +91,7 @@ func _order_ready() -> void:
 	_animation_player.play("client_leave")
 	_gui.order_ready()
 	_order_delay_timer.start()
+	_anvil.anvil_done()
 
 
 func _on_QuitButton_pressed():
