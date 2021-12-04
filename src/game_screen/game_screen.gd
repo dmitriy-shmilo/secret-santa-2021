@@ -7,8 +7,10 @@ onready var _bellows_slot: Node2D = $"BellowsSlot"
 onready var _character: Character = $"Character"
 onready var _anvil: Anvil = $"Anvil"
 onready var _bellows: Bellows = $"Bellows"
+onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 
 var _is_at_anvil = true
+var _has_order = false
 
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
@@ -47,6 +49,24 @@ func _process(delta: float) -> void:
 		else:
 			_character.bellows_down()
 			_bellows.bellows_down()
+
+
+func order_item() -> void:
+	if _has_order:
+		printerr("Order is already in progress")
+		return
+	
+	_has_order = true
+	_animation_player.play("client_enter")
+
+
+func order_ready() -> void:
+	if not _has_order:
+		printerr("Can't ready empty order")
+		return
+	
+	_has_order = false
+	_animation_player.play("client_leave")
 
 
 func _on_QuitButton_pressed():
