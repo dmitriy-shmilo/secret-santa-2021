@@ -38,8 +38,9 @@ func heat_update(current: float, total: float) -> void:
 	fire.restart()
 	
 	var timer = Timer.new()
+	add_child(timer)
 	timer.start(max(smoke.lifetime * 2, fire.lifetime * 2))
-	
+
 	yield(timer, "timeout")
 	smoke.queue_free()
 	fire.queue_free()
