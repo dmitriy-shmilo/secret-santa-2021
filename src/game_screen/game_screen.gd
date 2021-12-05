@@ -1,5 +1,6 @@
 extends Node2D
 
+const CLIENT_COUNT = 6
 
 onready var _gui: Gui = $"Gui"
 onready var _pause_container: ColorRect = $"Gui/PauseContainer"
@@ -21,6 +22,8 @@ var _order_progress = 0
 var _max_heat = 5
 var _heat = 0
 var _score = 0
+var _client_index = 0
+var _order_index = 0
 
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
@@ -85,6 +88,7 @@ func _order_item() -> void:
 		printerr("Order is already in progress")
 		return
 	
+	_order_index = _next_order_index()
 	_heat_decrease_timer.start()
 	_max_order_progress = 5
 	_order_progress = 0
@@ -92,9 +96,10 @@ func _order_item() -> void:
 	_heat = 0
 	_anvil.anvil_reset()
 	_has_order = true
+	_client.set_client_index(_order_index)
 	_animation_player.play("client_enter")
 	_gui.order_progress(_order_progress, _max_order_progress)
-	_gui.reset_for_order()
+	_gui.reset_for_order(_order_index)
 	
 
 
@@ -120,6 +125,13 @@ func _order_break() -> void:
 	_gui.order_progress(_order_progress, _max_order_progress)
 	_gui.heat_update(_heat, _max_heat)
 	_forge.heat_update(_heat, _max_heat)
+
+
+func _next_order_index() -> int:
+	var result = randi() % CLIENT_COUNT
+	if result == _order_index:
+		result = (result + 1) % CLIENT_COUNT
+	return result
 
 
 func _on_QuitButton_pressed():

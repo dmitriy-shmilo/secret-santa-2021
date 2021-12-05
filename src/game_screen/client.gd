@@ -11,11 +11,14 @@ const MAX_MOOD = 100.0
 const GOOD_MOOD_OFFSET = 32
 const NORMAL_MOOD_OFFSET = GOOD_MOOD_OFFSET + 16
 const BAD_MOOD_OFFSET = GOOD_MOOD_OFFSET + 32
+const SPRITE_OFFSET = 64
+const SPRITE_HEIGHT = 64
 
 signal mood_changed(current, total)
 
 var mood_decay_speed = 5.0
 
+onready var _body: Sprite = $"Body"
 onready var _mood_indicator: Sprite = $"MoodIndicator"
 onready var _mood_progress: TextureProgress = $"MoodProgress"
 
@@ -54,13 +57,13 @@ func satisfy() -> void:
 	_state = ClientState.SATISFIED
 
 
-func generate_client() -> void:
+func set_client_index(index: int) -> void:
 	if _state != ClientState.OFF_SCREEN:
-		printerr("Client can't be generated while on screen")
+		printerr("Client can't be changed while on screen")
 		return
 	
-	# TODO: pick a different character, with a respective item and voice
-
+	_body.region_rect.position.y = index * SPRITE_HEIGHT + SPRITE_OFFSET
+	
 
 func get_score() -> float:
 	return _mood
