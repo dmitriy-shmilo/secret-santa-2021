@@ -22,11 +22,15 @@ enum CharacterState {
 
 	BELLOWS_IDLE,
 	BELLOWS_UP,
-	BELLOWS_DOWN
+	BELLOWS_DOWN,
+	
+	RUNNING
 }
 
 signal progress_made()
 signal heat_increased()
+signal anvil_run_started()
+signal bellows_run_started()
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
@@ -89,7 +93,7 @@ func anvil_idle() -> void:
 	if _state ==  CharacterState.ANVIL_IDLE:
 		return
 
-	if _state in [CharacterState.CONFUSED, CharacterState.ANVIL_DOWN, CharacterState.BELLOWS_IDLE]:
+	if _state in [CharacterState.CONFUSED, CharacterState.RUNNING, CharacterState.ANVIL_DOWN, CharacterState.BELLOWS_IDLE]:
 		_animation_player.play("anvil_idle")
 		_state = CharacterState.ANVIL_IDLE
 		return
@@ -125,10 +129,27 @@ func bellows_idle() -> void:
 		return
 
 	# TODO: introduce intermediate states
-	if _state in [CharacterState.CONFUSED, CharacterState.BELLOWS_DOWN, CharacterState.ANVIL_IDLE]:
+	if _state in [CharacterState.CONFUSED, CharacterState.RUNNING, CharacterState.BELLOWS_DOWN, CharacterState.ANVIL_IDLE]:
 		_animation_player.play("bellows_idle")
 		_state = CharacterState.BELLOWS_IDLE
 		return
 	
 	confuse()
 	
+
+func transition(next_state: int) -> void:
+	if _state == CharacterState.CONFUSED:
+		return
+	
+	_state = CharacterState.RUNNING
+	
+	match next_state:
+		CharacterState.ANVIL_IDLE:
+			_animation_player.play("anvil_run")
+			emit_signal("anvil_run_started")
+		CharacterState.BELLOWS_IDLE:
+			_animation_player.play("bellows_run")
+			emit_signal("bellows_run_started")
+		_:
+			printerr("Can't transition to ", next_state)
+			return

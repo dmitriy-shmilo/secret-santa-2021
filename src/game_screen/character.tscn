@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/characters.png" type="Texture" id=1]
 [ext_resource path="res://game_screen/character.gd" type="Script" id=2]
@@ -125,6 +125,34 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "anvil_run"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "anvil_up"
 length = 0.001
@@ -187,7 +215,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -197,6 +225,34 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "bellows_idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 96, 0, 32, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "bellows_run"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -295,7 +351,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "death"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -342,9 +397,11 @@ region_rect = Rect2( 496, 0, 16, 16 )
 anims/RESET = SubResource( 1 )
 anims/anvil_down = SubResource( 2 )
 anims/anvil_idle = SubResource( 3 )
+anims/anvil_run = SubResource( 10 )
 anims/anvil_up = SubResource( 4 )
 anims/bellows_down = SubResource( 7 )
 anims/bellows_idle = SubResource( 5 )
+anims/bellows_run = SubResource( 11 )
 anims/bellows_up = SubResource( 6 )
 anims/confused = SubResource( 8 )
 anims/death = SubResource( 9 )

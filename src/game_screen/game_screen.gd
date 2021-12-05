@@ -31,17 +31,11 @@ func _process(_delta: float) -> void:
 	# TODO: move these actions to character 
 	# TODO: get rid of _is_at_anvil
 	if Input.is_action_just_pressed("left"):
-		_is_at_anvil = false
-		_anvil.anvil_leave()
-		_character.bellows_idle()
-		_character.global_position = _bellows_slot.global_position
+		_character.transition(Character.CharacterState.BELLOWS_IDLE)
 		return
 	
 	if Input.is_action_just_pressed("right"):
-		_is_at_anvil = true
-		_anvil.anvil_use()
-		_character.anvil_idle()
-		_character.global_position = _anvil_slot.global_position
+		_character.transition(Character.CharacterState.ANVIL_IDLE)
 		return
 	
 	if Input.is_action_just_pressed("up"):
@@ -159,3 +153,18 @@ func _on_HeatDecrease_timeout():
 	_heat = clamp(_heat - 1, 0, _max_heat)
 	_gui.heat_update(_heat, _max_heat)
 	_forge.heat_update(_heat, _max_heat)
+
+
+func _on_Character_bellows_run_started():
+	_is_at_anvil = false
+	_anvil.anvil_leave()
+	_character.bellows_idle() # move to Character?
+	_character.global_position = _bellows_slot.global_position
+
+
+func _on_Character_anvil_run_started():
+	_is_at_anvil = true
+	_bellows.bellows_down()
+	_anvil.anvil_use()
+	_character.anvil_idle()
+	_character.global_position = _anvil_slot.global_position
