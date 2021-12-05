@@ -1,6 +1,9 @@
 extends Sprite
 class_name Forge
 
+const HEAT_OFFSET1 = 0
+const HEAT_OFFSET2 = 48
+const HEAT_OFFSET3 = 96
 const SMOKE_SCENE = preload("res://game_screen/smoke_explosion.tscn")
 const FIRE_SCENE = preload("res://game_screen/fire_explosion.tscn")
 
@@ -11,6 +14,13 @@ var _heat = 0
 
 func heat_update(current: float, total: float) -> void:
 	
+	if current >= total / 1.5:
+		region_rect.position.x = HEAT_OFFSET3
+	elif current <= total / 3.0:
+		region_rect.position.x = HEAT_OFFSET1
+	else:
+		region_rect.position.x = HEAT_OFFSET2
+
 	if _heat >= current:
 		_heat = current
 		return
