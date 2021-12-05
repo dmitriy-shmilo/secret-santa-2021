@@ -258,12 +258,14 @@ __meta__ = {
 }
 
 [node name="ProgressIcon" type="Sprite" parent="Gui"]
+visible = false
 position = Vector2( 232, 90 )
 texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="ScoreLabel" type="Label" parent="Gui"]
+visible = false
 margin_left = 254.0
 margin_top = 1.0
 margin_right = 319.0
