@@ -168,3 +168,11 @@ func _on_Character_anvil_run_started():
 	_anvil.anvil_use()
 	_character.anvil_idle()
 	_character.global_position = _anvil_slot.global_position
+
+
+func _on_Character_bellows_raised():
+	_bellows.bellows_up()
+
+
+func _on_Character_bellows_lowered():
+	_bellows.bellows_down()

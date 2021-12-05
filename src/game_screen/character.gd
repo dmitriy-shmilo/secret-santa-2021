@@ -31,6 +31,8 @@ signal progress_made()
 signal heat_increased()
 signal anvil_run_started()
 signal bellows_run_started()
+signal bellows_raised()
+signal bellows_lowered()
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
@@ -107,6 +109,7 @@ func bellows_up() -> void:
 		_voice_player.stream = UP_SOUNDS[randi() % UP_SOUNDS.size()]
 		_voice_player.play()
 		_state = CharacterState.BELLOWS_UP
+		emit_signal("bellows_raised")
 		return
 	
 	confuse()
@@ -122,6 +125,7 @@ func bellows_down() -> void:
 	_voice_player.play()
 	_state = CharacterState.BELLOWS_DOWN
 	emit_signal("heat_increased")
+	emit_signal("bellows_lowered")
 
 
 func bellows_idle() -> void:
