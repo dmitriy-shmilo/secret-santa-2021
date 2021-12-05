@@ -12,6 +12,7 @@ onready var _bellows: Bellows = $"Bellows"
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _order_delay_timer: Timer = $"OrderDelay"
 onready var _heat_decrease_timer: Timer = $"HeatDecrease"
+onready var _forge: Forge = $"Forge"
 
 var _is_at_anvil = true
 var _has_order = false
@@ -84,6 +85,7 @@ func _heat_increase() -> void:
 		return
 	
 	_gui.heat_update(_heat, _max_heat)
+	_forge.heat_update(_heat, _max_heat)
 
 
 func _order_item() -> void:
@@ -145,3 +147,4 @@ func _on_Character_heat_increased():
 func _on_HeatDecrease_timeout():
 	_heat = clamp(_heat - 1, 0, _max_heat)
 	_gui.heat_update(_heat, _max_heat)
+	_forge.heat_update(_heat, _max_heat)

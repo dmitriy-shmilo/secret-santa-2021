@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/particles.png-0964d1b853d1adedd72657848e4d5083.stex"
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.132353, 0.306818 ), 0.0, 0.154546, 0, 0, Vector2( 1, 0 ), -0.166909, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 0.941176, 0.368627, 0.14902, 0.866667, 0.976563, 0.962675, 0.087738, 0.321569 )
+
+[node name="FireExplosion" type="CPUParticles2D"]
+position = Vector2( 0, -12 )
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 0.7
+texture = SubResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 6, 2 )
+gravity = Vector2( 0, -20 )
+scale_amount = 0.3
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )

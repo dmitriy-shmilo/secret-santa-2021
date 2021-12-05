@@ -25,6 +25,7 @@ script = ExtResource( 2 )
 
 [node name="Smoke" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -51 )
+amount = 4
 texture = ExtResource( 3 )
 emission_shape = 1
 emission_sphere_radius = 3.0
@@ -36,7 +37,7 @@ color_ramp = SubResource( 1 )
 
 [node name="Fire" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -12 )
-amount = 20
+amount = 10
 texture = SubResource( 2 )
 emission_shape = 2
 emission_rect_extents = Vector2( 6, 2 )
