@@ -19,6 +19,6 @@ func order_progress(current, total) -> void:
 	_order_progress_bar.max_value = total
 
 
-func heat_increase(current, total) -> void:
+func heat_update(current, total) -> void:
 	_heat_level_bar.value = current
 	_heat_level_bar.max_value = total

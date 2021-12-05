@@ -11,6 +11,7 @@ onready var _anvil: Anvil = $"Anvil"
 onready var _bellows: Bellows = $"Bellows"
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _order_delay_timer: Timer = $"OrderDelay"
+onready var _heat_decrease_timer: Timer = $"HeatDecrease"
 
 var _is_at_anvil = true
 var _has_order = false
@@ -74,13 +75,15 @@ func _heat_increase() -> void:
 		printerr("Can't heat with empty order")
 		return
 	
+	_heat_decrease_timer.start()
+	
 	_heat += 1
 	if _heat > _max_heat:
 		#TODO: melt and reset order
 		print("Overheat")
 		return
 	
-	_gui.heat_increase(_heat, _max_heat)
+	_gui.heat_update(_heat, _max_heat)
 
 
 func _order_item() -> void:
@@ -88,6 +91,7 @@ func _order_item() -> void:
 		printerr("Order is already in progress")
 		return
 	
+	_heat_decrease_timer.start()
 	_max_order_progress = 5
 	_order_progress = 0
 	_max_heat = 5
@@ -136,3 +140,8 @@ func _on_Character_progress_made():
 func _on_Character_heat_increased():
 	_heat_increase()
 	_bellows.bellows_down()
+
+
+func _on_HeatDecrease_timeout():
+	_heat = clamp(_heat - 1, 0, _max_heat)
+	_gui.heat_update(_heat, _max_heat)
