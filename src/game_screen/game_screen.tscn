@@ -262,6 +262,17 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 432, 64, 16, 16 )
 
+[node name="ScoreLabel" type="Label" parent="Gui"]
+margin_left = 254.0
+margin_top = 1.0
+margin_right = 319.0
+margin_bottom = 15.0
+text = "x0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnvilSlot" type="Node2D" parent="."]
 position = Vector2( 196, 128 )
 

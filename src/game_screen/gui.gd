@@ -3,6 +3,7 @@ class_name Gui
 
 onready var _order_progress_bar: TextureProgress = $"OrderProgress"
 onready var _heat_level_bar: TextureProgress = $"HeatLevel"
+onready var _score_label: Label = $"ScoreLabel"
 
 
 func reset_for_order() -> void:
@@ -22,3 +23,7 @@ func order_progress(current, total) -> void:
 func heat_update(current, total) -> void:
 	_heat_level_bar.value = current
 	_heat_level_bar.max_value = total
+
+
+func score_update(_change_by, total) -> void:
+	_score_label.text = "x" + str(floor(total))

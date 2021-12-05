@@ -62,10 +62,15 @@ func generate_client() -> void:
 	# TODO: pick a different character, with a respective item and voice
 
 
+func get_score() -> float:
+	return _mood
+
+
 func _reset() -> void:
 	_mood = MAX_MOOD
 	_update_ui()
 	emit_signal("mood_changed", _mood, MAX_MOOD)
+
 
 func _update_ui() -> void:
 	_mood_progress.value = _mood

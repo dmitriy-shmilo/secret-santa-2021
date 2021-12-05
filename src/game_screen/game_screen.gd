@@ -20,6 +20,7 @@ var _max_order_progress = 5
 var _order_progress = 0
 var _max_heat = 5
 var _heat = 0
+var _score = 0
 
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
@@ -43,7 +44,6 @@ func _process(_delta: float) -> void:
 			_character.anvil_up()
 		else:
 			_character.bellows_up()
-			_bellows.bellows_up()
 	
 	
 	if Input.is_action_just_pressed("down"):
@@ -104,10 +104,13 @@ func _order_ready() -> void:
 		return
 	
 	_has_order = false
+	_score += _client.get_score()
 	_animation_player.play("client_leave")
-	_gui.order_ready()
 	_order_delay_timer.start()
 	_anvil.anvil_done()
+
+	_gui.order_ready()
+	_gui.score_update(_client.get_score(), _score)
 
 
 func _order_break() -> void:
