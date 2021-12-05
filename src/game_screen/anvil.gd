@@ -6,15 +6,22 @@ enum AnvilState {
 	LEFT
 }
 
+enum MetalState {
+	PRESENT,
+	GONE
+}
+
 const DOWN_SOUNDS = [
 	preload("res://assets/audio/ding.wav")
 ]
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
+onready var _metal_animation_player: AnimationPlayer = $"MetalAnimationPlayer"
 onready var _audio_player: AudioStreamPlayer = $"AudioPlayer"
 onready var _metal_sprite: AnimatedSprite = $"MetalSprite"
 
 var _state = AnvilState.IN_USE
+var _metal_state = MetalState.PRESENT
 
 func _ready() -> void:
 	anvil_use()
@@ -36,15 +43,21 @@ func anvil_down() -> void:
 
 
 func anvil_break() -> void:
-	_metal_sprite.frame = 0
-	_metal_sprite.play()
-	
+	_metal_animation_player.play("metal_break")
+	_metal_state = MetalState.GONE
 
 func anvil_reset() -> void:
 	_metal_sprite.frame = 0
 	_metal_sprite.stop()
-	_animation_player.play("anvil_reset")
+	_metal_animation_player.play("metal_reset")
+	_metal_state = MetalState.PRESENT
+
 
 func anvil_done() -> void:
 	# TODO: show an item here
 	_metal_sprite.visible = false
+	_metal_state = MetalState.GONE
+	
+
+func has_metal() -> bool:
+	return _metal_state == MetalState.PRESENT

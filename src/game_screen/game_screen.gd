@@ -80,9 +80,7 @@ func _heat_increase() -> void:
 	
 	_heat += 1
 	if _heat > _max_heat:
-		#TODO: melt and reset order
-		print("Overheat")
-		return
+		_order_break()
 	
 	_gui.heat_update(_heat, _max_heat)
 	_forge.heat_update(_heat, _max_heat)
@@ -118,6 +116,15 @@ func _order_ready() -> void:
 	_anvil.anvil_done()
 
 
+func _order_break() -> void:
+	_anvil.anvil_break()
+	_order_progress = 0
+	_heat = 0
+	_gui.order_progress(_order_progress, _max_order_progress)
+	_gui.heat_update(_heat, _max_heat)
+	_forge.heat_update(_heat, _max_heat)
+
+
 func _on_QuitButton_pressed():
 	_pause_container.visible = false
 	get_tree().paused = false
@@ -135,8 +142,12 @@ func _on_OrderDelay_timeout():
 
 
 func _on_Character_progress_made():
-	_order_increase_progress()
+	if _anvil.has_metal():
+		_order_increase_progress()
 	_anvil.anvil_down()
+
+	if _heat <= 0:
+		_order_break()
 
 
 func _on_Character_heat_increased():
