@@ -15,7 +15,6 @@ onready var _order_delay_timer: Timer = $"OrderDelay"
 onready var _heat_decrease_timer: Timer = $"HeatDecrease"
 onready var _forge: Forge = $"Forge"
 
-var _is_at_anvil = true
 var _has_order = false
 var _max_order_progress = 5
 var _order_progress = 0
@@ -29,31 +28,6 @@ func _unhandled_input(event):
 	if event.is_action("system_pause"):
 		get_tree().paused = true
 		_pause_container.visible = true
-
-
-func _process(_delta: float) -> void:
-	# TODO: move these actions to character 
-	# TODO: get rid of _is_at_anvil
-	if Input.is_action_just_pressed("left"):
-		_character.transition(Character.CharacterState.BELLOWS_IDLE)
-		return
-	
-	if Input.is_action_just_pressed("right"):
-		_character.transition(Character.CharacterState.ANVIL_IDLE)
-		return
-	
-	if Input.is_action_just_pressed("up"):
-		if _is_at_anvil:
-			_character.anvil_up()
-		else:
-			_character.bellows_up()
-	
-	
-	if Input.is_action_just_pressed("down"):
-		if _is_at_anvil:
-			_character.anvil_down()
-		else:
-			_character.bellows_down()
 
 
 func _order_increase_progress() -> void:
@@ -159,29 +133,20 @@ func _on_Character_progress_made():
 		_order_break()
 
 
-func _on_Character_heat_increased():
-	_heat_increase()
-	_bellows.bellows_down()
-
-
 func _on_HeatDecrease_timeout():
 	_heat = clamp(_heat - 1, 0, _max_heat)
 	_gui.heat_update(_heat, _max_heat)
 	_forge.heat_update(_heat, _max_heat)
 
 
-func _on_Character_bellows_run_started():
-	_is_at_anvil = false
+func _on_Character_bellows_run_ended():
 	_anvil.anvil_leave()
-	_character.bellows_idle() # move to Character?
 	_character.global_position = _bellows_slot.global_position
 
 
-func _on_Character_anvil_run_started():
-	_is_at_anvil = true
+func _on_Character_anvil_run_ended():
 	_bellows.bellows_down()
 	_anvil.anvil_use()
-	_character.anvil_idle()
 	_character.global_position = _anvil_slot.global_position
 
 
@@ -191,3 +156,4 @@ func _on_Character_bellows_raised():
 
 func _on_Character_bellows_lowered():
 	_bellows.bellows_down()
+	_heat_increase()

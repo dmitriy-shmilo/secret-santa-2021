@@ -28,9 +28,8 @@ enum CharacterState {
 }
 
 signal progress_made()
-signal heat_increased()
-signal anvil_run_started()
-signal bellows_run_started()
+signal anvil_run_ended()
+signal bellows_run_ended()
 signal bellows_raised()
 signal bellows_lowered()
 
@@ -44,7 +43,34 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func confuse() -> void:
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("left"):
+		_transition(CharacterState.BELLOWS_IDLE)
+		return
+	
+	if Input.is_action_just_pressed("right"):
+		_transition(CharacterState.ANVIL_IDLE)
+		return
+	
+	if Input.is_action_just_pressed("up"):
+		match _state:
+			CharacterState.ANVIL_IDLE, CharacterState.ANVIL_DOWN, CharacterState.ANVIL_UP:
+				_anvil_up()
+			CharacterState.BELLOWS_IDLE, CharacterState.BELLOWS_DOWN, CharacterState.BELLOWS_UP:
+				_bellows_up()
+		return
+	
+	
+	if Input.is_action_just_pressed("down"):
+		match _state:
+			CharacterState.ANVIL_IDLE, CharacterState.ANVIL_DOWN, CharacterState.ANVIL_UP:
+				_anvil_down()
+			CharacterState.BELLOWS_IDLE, CharacterState.BELLOWS_DOWN, CharacterState.BELLOWS_UP:
+				_bellows_down()
+		return
+
+
+func _confuse() -> void:
 	if _animation_player.is_playing():
 		return
 
@@ -57,18 +83,17 @@ func confuse() -> void:
 	_animation_player.play("confused")
 
 
-func unconfuse() -> void:
+func _unconfuse() -> void:
 	_state = _previous_state
 	return
-# TODO: consider returning to idle state instead
-#	match _previous_state:
-#		CharacterState.ANVIL_DOWN, CharacterState.ANVIL_UP, CharacterState.ANVIL_IDLE:
-#			anvil_idle()
-#		CharacterState.BELLOWS_DOWN, CharacterState.BELLOWS_UP, CharacterState.BELLOWS_IDLE:
-#			bellows_idle()
 
 
-func anvil_up() -> void:
+func _anvil_run_end() -> void:
+	_state = CharacterState.ANVIL_IDLE
+	emit_signal("anvil_run_ended")
+
+
+func _anvil_up() -> void:
 	if _state == CharacterState.ANVIL_IDLE:
 		_animation_player.play("anvil_up")
 		_voice_player.stream = UP_SOUNDS[randi() % UP_SOUNDS.size()]
@@ -76,12 +101,12 @@ func anvil_up() -> void:
 		_state = CharacterState.ANVIL_UP
 		return
 	
-	confuse()
+	_confuse()
 
 
-func anvil_down() -> void:
+func _anvil_down() -> void:
 	if _state != CharacterState.ANVIL_UP:
-		confuse()
+		_confuse()
 		return
 
 	_animation_player.play("anvil_down")
@@ -91,7 +116,7 @@ func anvil_down() -> void:
 	emit_signal("progress_made")	
 
 
-func anvil_idle() -> void:
+func _anvil_idle() -> void:
 	if _state ==  CharacterState.ANVIL_IDLE:
 		return
 
@@ -100,10 +125,14 @@ func anvil_idle() -> void:
 		_state = CharacterState.ANVIL_IDLE
 		return
 	
-	confuse()
+	_confuse()
+
+func _bellows_run_end() -> void:
+	_state = CharacterState.BELLOWS_IDLE
+	emit_signal("bellows_run_ended")
 
 
-func bellows_up() -> void:
+func _bellows_up() -> void:
 	if _state == CharacterState.BELLOWS_IDLE:
 		_animation_player.play("bellows_up")
 		_voice_player.stream = UP_SOUNDS[randi() % UP_SOUNDS.size()]
@@ -112,23 +141,22 @@ func bellows_up() -> void:
 		emit_signal("bellows_raised")
 		return
 	
-	confuse()
+	_confuse()
 
 
-func bellows_down() -> void:
+func _bellows_down() -> void:
 	if _state != CharacterState.BELLOWS_UP:
-		confuse()
+		_confuse()
 		return
 
 	_animation_player.play("bellows_down")
 	_voice_player.stream = DOWN_SOUNDS[randi() % DOWN_SOUNDS.size()]
 	_voice_player.play()
 	_state = CharacterState.BELLOWS_DOWN
-	emit_signal("heat_increased")
 	emit_signal("bellows_lowered")
 
 
-func bellows_idle() -> void:
+func _bellows_idle() -> void:
 	if _state == CharacterState.BELLOWS_IDLE:
 		return
 
@@ -138,10 +166,10 @@ func bellows_idle() -> void:
 		_state = CharacterState.BELLOWS_IDLE
 		return
 	
-	confuse()
+	_confuse()
 	
 
-func transition(next_state: int) -> void:
+func _transition(next_state: int) -> void:
 	if _state == CharacterState.CONFUSED:
 		return
 	
@@ -150,10 +178,8 @@ func transition(next_state: int) -> void:
 	match next_state:
 		CharacterState.ANVIL_IDLE:
 			_animation_player.play("anvil_run")
-			emit_signal("anvil_run_started")
 		CharacterState.BELLOWS_IDLE:
 			_animation_player.play("bellows_run")
-			emit_signal("bellows_run_started")
 		_:
 			printerr("Can't transition to ", next_state)
 			return

@@ -237,6 +237,7 @@ region_enabled = true
 region_rect = Rect2( 448, 64, 16, 16 )
 
 [node name="OrderProgress" type="TextureProgress" parent="Gui"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -265,7 +266,6 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="ScoreLabel" type="Label" parent="Gui"]
-visible = false
 margin_left = 254.0
 margin_top = 1.0
 margin_right = 319.0
@@ -310,11 +310,10 @@ autostart = true
 
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
-[connection signal="anvil_run_started" from="Character" to="." method="_on_Character_anvil_run_started"]
+[connection signal="anvil_run_ended" from="Character" to="." method="_on_Character_anvil_run_ended"]
 [connection signal="bellows_lowered" from="Character" to="." method="_on_Character_bellows_lowered"]
 [connection signal="bellows_raised" from="Character" to="." method="_on_Character_bellows_raised"]
-[connection signal="bellows_run_started" from="Character" to="." method="_on_Character_bellows_run_started"]
-[connection signal="heat_increased" from="Character" to="." method="_on_Character_heat_increased"]
+[connection signal="bellows_run_ended" from="Character" to="." method="_on_Character_bellows_run_ended"]
 [connection signal="progress_made" from="Character" to="." method="_on_Character_progress_made"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]
 [connection signal="timeout" from="HeatDecrease" to="." method="_on_HeatDecrease_timeout"]
