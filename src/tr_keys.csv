@@ -1,4 +1,7 @@
 key,en,ru
+ui_pause,Pause,Пауза
+ui_retry,Retry,Еще Раз
+ui_continue,Continue,Продолжить
 ui_key_none,No Key,Нет Клавиши
 ui_fullscreen,Full Screen,Полный Экран
 ui_particles,Enable Particles,Включить Частицы
