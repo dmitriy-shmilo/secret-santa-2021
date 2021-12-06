@@ -15,6 +15,7 @@ onready var _order_delay_timer: Timer = $"OrderDelay"
 onready var _heat_decrease_timer: Timer = $"HeatDecrease"
 onready var _forge: Forge = $"Forge"
 
+var _game_over = false
 var _has_order = false
 var _max_order_progress = 5
 var _order_progress = 0
@@ -156,4 +157,15 @@ func _on_Character_bellows_raised():
 
 func _on_Character_bellows_lowered():
 	_bellows.bellows_down()
-	_heat_increase()
+	if _has_order:
+		_heat_increase()
+
+
+func _on_Client_mood_changed(current, total) -> void:
+	if not _game_over and current <= 0:
+		_character.die()
+
+
+func _on_Character_died() -> void:
+	#TODO: show score and game over screen
+	_game_over = true

@@ -24,7 +24,8 @@ enum CharacterState {
 	BELLOWS_UP,
 	BELLOWS_DOWN,
 	
-	RUNNING
+	RUNNING,
+	DYING
 }
 
 signal progress_made()
@@ -32,6 +33,7 @@ signal anvil_run_ended()
 signal bellows_run_ended()
 signal bellows_raised()
 signal bellows_lowered()
+signal died()
 
 onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
@@ -39,11 +41,11 @@ onready var _voice_player: AudioStreamPlayer = $"VoicePlayer"
 var _state = CharacterState.ANVIL_IDLE
 var _previous_state = CharacterState.CONFUSED
 
-func _ready() -> void:
-	pass # Replace with function body.
-
 
 func _process(_delta: float) -> void:
+	if _state == CharacterState.DYING:
+		return
+
 	if Input.is_action_just_pressed("left"):
 		_transition(CharacterState.BELLOWS_IDLE)
 		return
@@ -70,9 +72,19 @@ func _process(_delta: float) -> void:
 		return
 
 
+func die() -> void:
+	_state = CharacterState.DYING
+	_animation_player.play("die")
+
+
+func _die_end() -> void:
+	emit_signal("died")
+
+
 func _confuse() -> void:
 	if _animation_player.is_playing():
 		return
+
 
 	if _state == CharacterState.CONFUSED:
 		print("Prevented double-confuse")
@@ -85,7 +97,6 @@ func _confuse() -> void:
 
 func _unconfuse() -> void:
 	_state = _previous_state
-	return
 
 
 func _anvil_run_end() -> void:

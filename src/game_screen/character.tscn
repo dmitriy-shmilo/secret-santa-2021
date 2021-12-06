@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/characters.png" type="Texture" id=1]
 [ext_resource path="res://game_screen/character.gd" type="Script" id=2]
@@ -404,6 +404,47 @@ tracks/1/keys = {
 "values": [ Rect2( 96, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ) ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, 0 ), Vector2( 1, -1 ), Vector2( -1, 0 ), Vector2( 0, -2 ), Vector2( 3, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 192, 0, 32, 64 ), Rect2( 224, 0, 32, 64 ), Rect2( 256, 0, 32, 64 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_die_end"
+} ]
+}
+
 [node name="Character" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -433,5 +474,6 @@ anims/bellows_run = SubResource( 11 )
 anims/bellows_up = SubResource( 6 )
 anims/confused = SubResource( 8 )
 anims/death = SubResource( 9 )
+anims/die = SubResource( 12 )
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="."]

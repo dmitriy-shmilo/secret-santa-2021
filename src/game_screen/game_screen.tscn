@@ -315,6 +315,8 @@ autostart = true
 [connection signal="bellows_lowered" from="Character" to="." method="_on_Character_bellows_lowered"]
 [connection signal="bellows_raised" from="Character" to="." method="_on_Character_bellows_raised"]
 [connection signal="bellows_run_ended" from="Character" to="." method="_on_Character_bellows_run_ended"]
+[connection signal="died" from="Character" to="." method="_on_Character_died"]
 [connection signal="progress_made" from="Character" to="." method="_on_Character_progress_made"]
+[connection signal="mood_changed" from="Client" to="." method="_on_Client_mood_changed"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]
 [connection signal="timeout" from="HeatDecrease" to="." method="_on_HeatDecrease_timeout"]

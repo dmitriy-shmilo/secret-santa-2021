@@ -11,6 +11,7 @@ const MAX_MOOD = 100.0
 const GOOD_MOOD_OFFSET = 32
 const NORMAL_MOOD_OFFSET = GOOD_MOOD_OFFSET + 16
 const BAD_MOOD_OFFSET = GOOD_MOOD_OFFSET + 32
+const ZERO_MOOD_OFFSET = GOOD_MOOD_OFFSET + 48
 const SPRITE_OFFSET = 64
 const SPRITE_HEIGHT = 64
 
@@ -77,7 +78,9 @@ func _reset() -> void:
 
 func _update_ui() -> void:
 	_mood_progress.value = _mood
-	if _mood <= MAX_MOOD / 3.0:
+	if _mood <= 0.0:
+		_mood_indicator.region_rect.position.y = ZERO_MOOD_OFFSET
+	elif _mood <= MAX_MOOD / 3.0:
 		_mood_indicator.region_rect.position.y = BAD_MOOD_OFFSET
 	elif _mood >= MAX_MOOD / 1.5:
 		_mood_indicator.region_rect.position.y = GOOD_MOOD_OFFSET
