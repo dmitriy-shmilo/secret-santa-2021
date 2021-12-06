@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://game_screen/game_screen.gd" type="Script" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/ui.png" type="Texture" id=10]
 [ext_resource path="res://assets/objects.png" type="Texture" id=11]
 [ext_resource path="res://assets/items.png" type="Texture" id=12]
+[ext_resource path="res://ui/fader.tscn" type="PackedScene" id=13]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 10 )
@@ -315,6 +316,8 @@ autostart = true
 
 [node name="HeatDecrease" type="Timer" parent="."]
 
+[node name="Fader" parent="." instance=ExtResource( 13 )]
+
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="anvil_run_ended" from="Character" to="." method="_on_Character_anvil_run_ended"]
@@ -326,3 +329,4 @@ autostart = true
 [connection signal="mood_changed" from="Client" to="." method="_on_Client_mood_changed"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]
 [connection signal="timeout" from="HeatDecrease" to="." method="_on_HeatDecrease_timeout"]
+[connection signal="fade_out_completed" from="Fader" to="." method="_on_Fader_fade_out_completed"]

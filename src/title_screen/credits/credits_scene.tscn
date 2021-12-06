@@ -18,15 +18,15 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="."]
-margin_right = 824.0
-margin_bottom = 14.0
+margin_right = 120.0
+margin_bottom = 13.0
 text = "Credits"
 align = 1
 
 [node name="CreditsText" type="RichTextLabel" parent="."]
-margin_top = 18.0
-margin_right = 824.0
-margin_bottom = 376.0
+margin_top = 17.0
+margin_right = 120.0
+margin_bottom = 17.0
 size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "[center]Thank you for playing[/center]"
@@ -36,10 +36,10 @@ __meta__ = {
 }
 
 [node name="BackToTitleButton" type="Button" parent="."]
-margin_left = 357.0
-margin_top = 380.0
-margin_right = 467.0
-margin_bottom = 400.0
+margin_left = 6.0
+margin_top = 21.0
+margin_right = 114.0
+margin_bottom = 40.0
 size_flags_horizontal = 4
 shortcut_in_tooltip = false
 shortcut = ExtResource( 3 )

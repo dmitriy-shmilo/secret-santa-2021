@@ -27,7 +27,7 @@ visible = false
 
 [node name="SoundSettings" parent="SettingsScene/VBoxContainer/PanelContainer/TabContainer" index="0"]
 margin_left = 7.0
-margin_top = 36.0
+margin_top = 35.0
 margin_right = -7.0
 margin_bottom = -7.0
 
@@ -38,9 +38,9 @@ margin_right = -7.0
 margin_bottom = -7.0
 
 [node name="Container" parent="SettingsScene/VBoxContainer/PanelContainer/TabContainer/VideoSettings" index="0"]
-margin_left = 394.0
+margin_left = 396.0
 margin_top = 196.0
-margin_right = 503.0
+margin_right = 502.0
 margin_bottom = 264.0
 
 [node name="KeyBindings" parent="SettingsScene/VBoxContainer/PanelContainer/TabContainer" index="2"]

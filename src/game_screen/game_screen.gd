@@ -3,6 +3,7 @@ extends Node2D
 const CLIENT_COUNT = 6
 
 onready var _gui: Gui = $"Gui"
+onready var _fader: Fader = $"Fader"
 onready var _pause_container: ColorRect = $"Gui/PauseContainer"
 onready var _anvil_slot: Node2D = $"AnvilSlot"
 onready var _bellows_slot: Node2D = $"BellowsSlot"
@@ -167,5 +168,9 @@ func _on_Client_mood_changed(current, total) -> void:
 
 
 func _on_Character_died() -> void:
-	#TODO: show score and game over screen
 	_game_over = true
+	_fader.fade_out()
+
+
+func _on_Fader_fade_out_completed() -> void:
+	get_tree().change_scene("res://game_over_screen/game_over_screen.tscn")
