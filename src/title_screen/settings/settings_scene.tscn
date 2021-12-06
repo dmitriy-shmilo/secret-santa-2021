@@ -34,7 +34,7 @@ align = 1
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 17.0
 margin_right = 319.0
-margin_bottom = 157.0
+margin_bottom = 152.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,10 +44,9 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 312.0
-margin_bottom = 133.0
+margin_bottom = 128.0
 
 [node name="SoundSettings" type="Control" parent="VBoxContainer/PanelContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
@@ -76,17 +75,18 @@ margin_bottom = 16.0
 alignment = 1
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/MasterVolume"]
-margin_right = 96.0
+margin_left = 52.0
+margin_right = 148.0
 margin_bottom = 16.0
 size_flags_horizontal = 10
 size_flags_vertical = 1
 text = "ui_master_volume"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/MasterVolume"]
-margin_left = 100.0
-margin_right = 300.0
+margin_left = 152.0
+margin_right = 272.0
 margin_bottom = 16.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 2
 
 [node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container"]
@@ -96,18 +96,18 @@ margin_bottom = 36.0
 alignment = 1
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/MusicVolume"]
-margin_left = 6.0
-margin_right = 96.0
+margin_left = 58.0
+margin_right = 148.0
 margin_bottom = 16.0
 size_flags_horizontal = 10
 size_flags_vertical = 1
 text = "ui_music_volume"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/MusicVolume"]
-margin_left = 100.0
-margin_right = 300.0
+margin_left = 152.0
+margin_right = 272.0
 margin_bottom = 16.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 2
 
 [node name="SfxVolume" type="HBoxContainer" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container"]
@@ -117,18 +117,18 @@ margin_bottom = 56.0
 alignment = 1
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/SfxVolume"]
-margin_left = 18.0
-margin_right = 96.0
+margin_left = 70.0
+margin_right = 148.0
 margin_bottom = 16.0
 size_flags_horizontal = 10
 size_flags_vertical = 1
 text = "ui_sfx_volume"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer/PanelContainer/TabContainer/SoundSettings/Container/SfxVolume"]
-margin_left = 100.0
-margin_right = 300.0
+margin_left = 152.0
+margin_right = 272.0
 margin_bottom = 16.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 2
 
 [node name="VideoSettings" type="ScrollContainer" parent="VBoxContainer/PanelContainer/TabContainer"]
@@ -141,10 +141,10 @@ margin_right = -7.0
 margin_bottom = -7.0
 
 [node name="Container" type="VBoxContainer" parent="VBoxContainer/PanelContainer/TabContainer/VideoSettings"]
-margin_left = 92.0
-margin_top = 8.0
-margin_right = 198.0
-margin_bottom = 76.0
+margin_left = 96.0
+margin_top = 13.0
+margin_right = 194.0
+margin_bottom = 65.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_constants/separation = 20
@@ -154,14 +154,14 @@ __meta__ = {
 }
 
 [node name="FullscreenCheckbox" type="CheckBox" parent="VBoxContainer/PanelContainer/TabContainer/VideoSettings/Container"]
-margin_right = 98.0
-margin_bottom = 16.0
+margin_right = 112.0
+margin_bottom = 27.0
 text = "ui_fullscreen"
 
 [node name="ParticlesCheckbox" type="CheckBox" parent="VBoxContainer/PanelContainer/TabContainer/VideoSettings/Container"]
-margin_top = 36.0
-margin_right = 98.0
-margin_bottom = 52.0
+margin_top = 47.0
+margin_right = 112.0
+margin_bottom = 74.0
 text = "ui_particles"
 
 [node name="KeyBindings" type="ScrollContainer" parent="VBoxContainer/PanelContainer/TabContainer"]
@@ -175,9 +175,9 @@ margin_bottom = -7.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/TabContainer/KeyBindings"]
 margin_left = 145.0
-margin_top = 42.0
+margin_top = 39.0
 margin_right = 145.0
-margin_bottom = 42.0
+margin_bottom = 39.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_constants/vseparation = 10
@@ -185,9 +185,9 @@ custom_constants/hseparation = 10
 columns = 2
 
 [node name="BackToTitleButton" type="Button" parent="VBoxContainer"]
-margin_left = 132.0
-margin_top = 161.0
-margin_right = 186.0
+margin_left = 131.0
+margin_top = 156.0
+margin_right = 187.0
 margin_bottom = 180.0
 size_flags_horizontal = 4
 shortcut_in_tooltip = false
