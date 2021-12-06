@@ -61,7 +61,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 339, 128 ), Vector2( 319.4, 120 ), Vector2( 290, 128 ) ]
+"values": [ Vector2( 339, 128 ), Vector2( 303, 120 ), Vector2( 267, 128 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Client:scale")
@@ -151,7 +151,13 @@ region_enabled = true
 region_rect = Rect2( 0, 112, 48, 80 )
 
 [node name="Tree2" type="Sprite" parent="Clutter"]
-position = Vector2( 10, 88 )
+position = Vector2( 19, 88 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 80 )
+
+[node name="Tree3" type="Sprite" parent="Clutter"]
+position = Vector2( 50, 88 )
 texture = ExtResource( 11 )
 region_enabled = true
 region_rect = Rect2( 0, 112, 48, 80 )
@@ -260,16 +266,16 @@ __meta__ = {
 
 [node name="ProgressIcon" type="Sprite" parent="Gui"]
 visible = false
-position = Vector2( 232, 90 )
+position = Vector2( 232, 89 )
 texture = ExtResource( 12 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="ScoreLabel" type="Label" parent="Gui"]
-margin_left = 254.0
-margin_top = 1.0
-margin_right = 319.0
-margin_bottom = 15.0
+margin_left = 252.0
+margin_top = 3.0
+margin_right = 317.0
+margin_bottom = 17.0
 theme = ExtResource( 2 )
 text = "x0"
 align = 2

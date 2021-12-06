@@ -23,7 +23,7 @@ region_enabled = true
 region_rect = Rect2( 0, 192, 32, 64 )
 
 [node name="MoodIndicator" type="Sprite" parent="."]
-position = Vector2( -18, -36 )
+position = Vector2( -18, -37 )
 texture = ExtResource( 3 )
 flip_h = true
 region_enabled = true
@@ -35,8 +35,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -26.0
-margin_top = -29.0
+margin_top = -30.0
 margin_right = -10.0
+margin_bottom = -1.0
 value = 100.0
 texture_under = SubResource( 1 )
 texture_progress = SubResource( 2 )
