@@ -143,6 +143,44 @@ script = ExtResource( 1 )
 texture = ExtResource( 4 )
 centered = false
 
+[node name="StaticClouds" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="StaticClouds"]
+position = Vector2( 57, 29 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 144, 0, 48, 32 )
+
+[node name="Sprite2" type="Sprite" parent="StaticClouds"]
+position = Vector2( 181, 48 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 144, 0, 48, 32 )
+
+[node name="Sprite5" type="Sprite" parent="StaticClouds"]
+position = Vector2( 298, 81 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 144, 0, 48, 32 )
+
+[node name="Sprite4" type="Sprite" parent="StaticClouds"]
+position = Vector2( 112, 58 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 48, 32 )
+
+[node name="Sprite6" type="Sprite" parent="StaticClouds"]
+position = Vector2( 37, 89 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 48, 32 )
+
+[node name="Sprite3" type="Sprite" parent="StaticClouds"]
+position = Vector2( 272, 24 )
+texture = ExtResource( 11 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 48, 32 )
+
 [node name="Clutter" type="Node2D" parent="."]
 
 [node name="Tree" type="Sprite" parent="Clutter"]
