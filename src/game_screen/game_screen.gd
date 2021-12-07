@@ -127,6 +127,12 @@ func _on_OrderDelay_timeout():
 	_order_item()
 
 
+func _on_HeatDecrease_timeout():
+	_heat = clamp(_heat - 1, 0, _max_heat)
+	_gui.heat_update(_heat, _max_heat)
+	_forge.heat_update(_heat, _max_heat)
+
+
 func _on_Character_progress_made():
 	if _anvil.has_metal():
 		_order_increase_progress()
@@ -134,12 +140,6 @@ func _on_Character_progress_made():
 
 	if _heat <= 0:
 		_order_break()
-
-
-func _on_HeatDecrease_timeout():
-	_heat = clamp(_heat - 1, 0, _max_heat)
-	_gui.heat_update(_heat, _max_heat)
-	_forge.heat_update(_heat, _max_heat)
 
 
 func _on_Character_bellows_run_ended():
@@ -162,12 +162,6 @@ func _on_Character_bellows_lowered():
 	_heat_increase()
 
 
-func _on_Client_mood_changed(current, total) -> void:
-	if not _game_over and current <= 0:
-		_character.die()
-		_animation_player.play("client_kill")
-
-
 func _on_Character_died() -> void:
 	_game_over = true
 	_fader.fade_out()
@@ -175,3 +169,15 @@ func _on_Character_died() -> void:
 
 func _on_Fader_fade_out_completed() -> void:
 	get_tree().change_scene("res://game_over_screen/game_over_screen.tscn")
+
+
+func _on_Client_state_changed(new_state) -> void:
+	match new_state:
+		Client.ClientState.DISSATISFIED:
+			if not _game_over:
+				_character.die()
+				_animation_player.play("client_kill")
+		Client.ClientState.WAITING_GOOD, \
+		Client.ClientState.WAITING_NORMAL, \
+		Client.ClientState.WAITING_BAD:
+				_animation_player.play("client_talk")

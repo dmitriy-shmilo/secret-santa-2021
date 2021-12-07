@@ -3,7 +3,10 @@ class_name Client
 
 enum ClientState {
 	OFF_SCREEN,
-	WAITING,
+	WAITING_GOOD,
+	WAITING_NORMAL,
+	WAITING_BAD,
+	DISSATISFIED,
 	SATISFIED
 }
 
@@ -15,7 +18,7 @@ const ZERO_MOOD_OFFSET = GOOD_MOOD_OFFSET + 48
 const SPRITE_OFFSET = 64
 const SPRITE_HEIGHT = 64
 
-signal mood_changed(current, total)
+signal state_changed(new_state)
 
 var mood_decay_speed = 2.0
 
@@ -27,18 +30,30 @@ var _mood = MAX_MOOD
 var _state = ClientState.OFF_SCREEN
 
 func _process(delta) -> void:
-	if _state == ClientState.WAITING:
+	if _state in [ClientState.WAITING_GOOD, ClientState.WAITING_NORMAL, ClientState.WAITING_BAD]:
 		_mood = clamp(_mood - mood_decay_speed * delta, 0, MAX_MOOD)
 		_update_ui()
-		emit_signal("mood_changed", _mood, MAX_MOOD)
+		
+		var old_state = _state
+		if _mood <= 0.0:
+			_state = ClientState.DISSATISFIED
+		elif _mood <= MAX_MOOD / 3.0:
+			_state = ClientState.WAITING_BAD
+		elif _mood >= MAX_MOOD / 1.5:
+			_state = ClientState.WAITING_GOOD
+		else:
+			_state = ClientState.WAITING_NORMAL
+		
+		if _state != old_state:
+			emit_signal("state_changed", _state)
 
 
 func start_waiting() -> void:
-	if _state == ClientState.WAITING:
+	if _state in [ClientState.WAITING_GOOD, ClientState.WAITING_NORMAL, ClientState.WAITING_BAD]:
 		printerr("Client is already waiting")
 		return
 
-	_state = ClientState.WAITING
+	_state = ClientState.WAITING_GOOD
 
 
 func go_offscreen() -> void:

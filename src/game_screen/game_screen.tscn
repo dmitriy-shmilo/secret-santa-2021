@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://game_screen/game_screen.gd" type="Script" id=1]
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=2]
@@ -149,6 +149,22 @@ tracks/2/keys = {
 "args": [  ],
 "method": "go_offscreen"
 } ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "client_talk"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Client:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 267, 128 ), Vector2( 267, 127 ), Vector2( 267, 128 ), Vector2( 267, 127 ), Vector2( 267, 128 ), Vector2( 267, 127 ), Vector2( 267, 128 ) ]
 }
 
 [node name="GameScreen" type="Node2D"]
@@ -363,6 +379,7 @@ anims/RESET = SubResource( 1 )
 anims/client_enter = SubResource( 2 )
 anims/client_kill = SubResource( 6 )
 anims/client_leave = SubResource( 3 )
+anims/client_talk = SubResource( 7 )
 
 [node name="OrderDelay" type="Timer" parent="."]
 one_shot = true
@@ -380,7 +397,7 @@ autostart = true
 [connection signal="bellows_run_ended" from="Character" to="." method="_on_Character_bellows_run_ended"]
 [connection signal="died" from="Character" to="." method="_on_Character_died"]
 [connection signal="progress_made" from="Character" to="." method="_on_Character_progress_made"]
-[connection signal="mood_changed" from="Client" to="." method="_on_Client_mood_changed"]
+[connection signal="state_changed" from="Client" to="." method="_on_Client_state_changed"]
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]
 [connection signal="timeout" from="HeatDecrease" to="." method="_on_HeatDecrease_timeout"]
 [connection signal="fade_out_completed" from="Fader" to="." method="_on_Fader_fade_out_completed"]
