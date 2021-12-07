@@ -30,6 +30,18 @@ var _client_index = 0
 var _order_index = 0
 var _difficulty = MIN_DIFFICULTY
 
+
+func _ready() -> void:
+	if Settings.particles:
+		$CloudParticles.visible = true
+		$CloudParticles.emitting = true
+		$StaticClouds.visible = false
+	else:
+		$CloudParticles.visible = false
+		$CloudParticles.emitting = false
+		$StaticClouds.visible = true
+
+
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
 		get_tree().paused = true

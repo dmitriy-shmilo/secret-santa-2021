@@ -12,6 +12,13 @@ onready var _fire = $"Fire"
 
 var _heat = 0
 
+func _ready() -> void:
+	if not Settings.particles:
+		_smoke.emitting = false
+		_smoke.visible = false
+		_fire.emitting = false
+		_fire.visible = false
+		
 func heat_update(current: float, total: float) -> void:
 	
 	if current >= total / 1.5:
@@ -26,6 +33,9 @@ func heat_update(current: float, total: float) -> void:
 		return
 
 	_heat = current
+	
+	if not Settings.particles:
+		return
 
 	var smoke = SMOKE_SCENE.instance()
 	add_child(smoke)
