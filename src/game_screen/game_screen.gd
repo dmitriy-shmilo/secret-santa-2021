@@ -1,6 +1,9 @@
 extends Node2D
 
-const CLIENT_COUNT = 6
+const CLIENT_COUNT: int = 6
+const MAX_DIFFICULTY: float = 2.0
+const MIN_DIFFICULTY: float = 0.75
+const HEAT_DECREASE_TIME: float = 1.0
 
 onready var _gui: Gui = $"Gui"
 onready var _fader: Fader = $"Fader"
@@ -25,6 +28,7 @@ var _heat = 0
 var _score = 0
 var _client_index = 0
 var _order_index = 0
+var _difficulty = MIN_DIFFICULTY
 
 func _unhandled_input(event):
 	if event.is_action("system_pause"):
@@ -92,6 +96,10 @@ func _order_ready() -> void:
 
 	_gui.order_ready()
 	_gui.score_update(_client.get_score(), _score)
+	_difficulty = clamp(_difficulty * 1.08, 0.0, MAX_DIFFICULTY)
+	
+	_heat_decrease_timer.wait_time = HEAT_DECREASE_TIME / _difficulty
+	_client.mood_decay_speed *= _difficulty
 
 
 func _order_break() -> void:
