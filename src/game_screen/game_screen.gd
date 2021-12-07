@@ -1,7 +1,7 @@
 extends Node2D
 
 const CLIENT_COUNT: int = 6
-const MAX_DIFFICULTY: float = 2.0
+const MAX_DIFFICULTY: float = 2.5
 const MIN_DIFFICULTY: float = 0.75
 const HEAT_DECREASE_TIME: float = 1.0
 
@@ -48,11 +48,7 @@ func _order_increase_progress() -> void:
 	_gui.order_progress(_order_progress, _max_order_progress)
 
 
-func _heat_increase() -> void:
-	if not _has_order:
-		printerr("Can't heat with empty order")
-		return
-	
+func _heat_increase() -> void:	
 	_heat_decrease_timer.start()
 	
 	_heat += 1
@@ -70,10 +66,7 @@ func _order_item() -> void:
 	
 	_order_index = _next_order_index()
 	_heat_decrease_timer.start()
-	_max_order_progress = 5
 	_order_progress = 0
-	_max_heat = 5
-	_heat = 0
 	_anvil.anvil_reset()
 	_has_order = true
 	_client.set_client_index(_order_index)
@@ -166,8 +159,7 @@ func _on_Character_bellows_raised():
 
 func _on_Character_bellows_lowered():
 	_bellows.bellows_down()
-	if _has_order:
-		_heat_increase()
+	_heat_increase()
 
 
 func _on_Client_mood_changed(current, total) -> void:

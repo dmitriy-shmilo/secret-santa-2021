@@ -17,7 +17,7 @@ const SPRITE_HEIGHT = 64
 
 signal mood_changed(current, total)
 
-var mood_decay_speed = 3.0
+var mood_decay_speed = 2.0
 
 onready var _body: Sprite = $"Body"
 onready var _mood_indicator: Sprite = $"MoodIndicator"

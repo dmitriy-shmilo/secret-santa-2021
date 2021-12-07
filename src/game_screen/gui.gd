@@ -9,7 +9,6 @@ onready var _heat_level_bar: TextureProgress = $"HeatLevel"
 onready var _score_label: Label = $"ScoreLabel"
 
 func reset_for_order(icon_index: int) -> void:
-	_heat_level_bar.value = 0
 	_order_progress_bar.value = 0
 	_order_progress_bar.visible = true
 	_progress_icon.visible = true
