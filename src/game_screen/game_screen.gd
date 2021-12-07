@@ -173,6 +173,7 @@ func _on_Character_bellows_lowered():
 func _on_Client_mood_changed(current, total) -> void:
 	if not _game_over and current <= 0:
 		_character.die()
+		_animation_player.play("client_kill")
 
 
 func _on_Character_died() -> void:
