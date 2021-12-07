@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=2]
+[gd_resource type="Theme" load_steps=30 format=2]
 
 [ext_resource path="res://assets/ui.png" type="Texture" id=1]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=2]
@@ -104,6 +104,52 @@ margin_top = 7.0
 margin_bottom = 6.0
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxTexture" id=27]
+texture = ExtResource( 1 )
+region_rect = Rect2( 16, 16, 16, 16 )
+margin_left = 7.13474
+margin_right = 6.50888
+margin_top = 6.50888
+margin_bottom = 7.00956
+expand_margin_top = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 1 )
+region_rect = Rect2( 32, 16, 16, 16 )
+margin_left = 7.13474
+margin_right = 6.50888
+margin_top = 6.50888
+margin_bottom = 7.00956
+expand_margin_top = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 1 )
+region_rect = Rect2( 16, 16, 16, 16 )
+margin_left = 7.13474
+margin_right = 6.50888
+margin_top = 6.50888
+margin_bottom = 7.00956
+expand_margin_top = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id=30]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 16, 16, 16 )
+margin_left = 7.13474
+margin_right = 6.50888
+margin_top = 6.50888
+margin_bottom = 7.00956
+
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 16, 16, 16 )
+margin_left = 7.13474
+margin_right = 6.50888
+margin_top = 6.50888
+margin_bottom = 7.00956
+
 [sub_resource type="DynamicFont" id=13]
 font_data = ExtResource( 2 )
 
@@ -134,3 +180,8 @@ TabContainer/styles/tab_bg = SubResource( 4 )
 TabContainer/styles/tab_disabled = SubResource( 6 )
 TabContainer/styles/tab_fg = SubResource( 5 )
 TooltipPanel/styles/panel = SubResource( 3 )
+VScrollBar/styles/grabber = SubResource( 27 )
+VScrollBar/styles/grabber_highlight = SubResource( 28 )
+VScrollBar/styles/grabber_pressed = SubResource( 29 )
+VScrollBar/styles/scroll = SubResource( 30 )
+VScrollBar/styles/scroll_focus = SubResource( 31 )
