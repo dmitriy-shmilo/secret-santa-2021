@@ -101,7 +101,11 @@ func _order_ready() -> void:
 		return
 	
 	_has_order = false
+
 	_score += _client.get_score()
+	UserSaveData.current_score = _score
+	UserSaveData.save_data()
+
 	_animation_player.play("client_leave")
 	_order_delay_timer.start()
 	_anvil.anvil_done()

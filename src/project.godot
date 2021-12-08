@@ -95,6 +95,7 @@ config/windows_native_icon="res://icon.ico"
 
 ErrorHandler="*res://util/error_handler.gd"
 Settings="*res://util/settings.gd"
+UserSaveData="*res://util/user_save_data.gd"
 
 [display]
 
