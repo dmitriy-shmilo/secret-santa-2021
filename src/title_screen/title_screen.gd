@@ -12,11 +12,19 @@ onready var _scenes = [
 
 var _transition_target: Control = null
 
+
+func _ready() -> void:
+	$CloudParticles.visible = Settings.particles
+	$CloudParticles.emitting = Settings.particles
+
+
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
 
 func _on_BackToTitleButton_pressed() -> void:
+	$CloudParticles.visible = Settings.particles
+	$CloudParticles.emitting = Settings.particles
 	_transition_to(_title_scene)
 
 
