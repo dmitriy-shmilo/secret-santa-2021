@@ -407,6 +407,9 @@ autostart = true
 
 [node name="Fader" parent="." instance=ExtResource( 13 )]
 
+[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="Gui/PauseContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="anvil_run_ended" from="Character" to="." method="_on_Character_anvil_run_ended"]
@@ -419,3 +422,4 @@ autostart = true
 [connection signal="timeout" from="OrderDelay" to="." method="_on_OrderDelay_timeout"]
 [connection signal="timeout" from="HeatDecrease" to="." method="_on_HeatDecrease_timeout"]
 [connection signal="fade_out_completed" from="Fader" to="." method="_on_Fader_fade_out_completed"]
+[connection signal="finished" from="SoundtrackPlayer" to="." method="_on_SoundtrackPlayer_finished"]

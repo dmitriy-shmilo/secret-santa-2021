@@ -1,5 +1,9 @@
 extends Node2D
 
+const SOUNDTRACKS = [
+	preload("res://assets/audio/soundtrack1.mp3"),
+	preload("res://assets/audio/soundtrack2.mp3")
+]
 const CLIENT_COUNT: int = 6
 const MAX_DIFFICULTY: float = 2.5
 const MIN_DIFFICULTY: float = 0.75
@@ -18,6 +22,7 @@ onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 onready var _order_delay_timer: Timer = $"OrderDelay"
 onready var _heat_decrease_timer: Timer = $"HeatDecrease"
 onready var _forge: Forge = $"Forge"
+onready var _soundtrack_player: AudioStreamPlayer = $"SoundtrackPlayer"
 
 var _game_over = false
 var _has_order = false
@@ -29,7 +34,7 @@ var _score = 0
 var _client_index = 0
 var _order_index = 0
 var _difficulty = MIN_DIFFICULTY
-
+var _current_soundtrack = 0
 
 func _ready() -> void:
 	if Settings.particles:
@@ -40,6 +45,9 @@ func _ready() -> void:
 		$CloudParticles.visible = false
 		$CloudParticles.emitting = false
 		$StaticClouds.visible = true
+	
+	_soundtrack_player.stream = SOUNDTRACKS[_current_soundtrack]
+	_soundtrack_player.play()
 
 
 func _unhandled_input(event):
@@ -187,9 +195,19 @@ func _on_Client_state_changed(new_state) -> void:
 	match new_state:
 		Client.ClientState.DISSATISFIED:
 			if not _game_over:
+				_soundtrack_player.stop()
 				_character.die()
 				_animation_player.play("client_kill")
 		Client.ClientState.WAITING_GOOD, \
 		Client.ClientState.WAITING_NORMAL, \
 		Client.ClientState.WAITING_BAD:
 				_animation_player.play("client_talk")
+
+
+func _on_SoundtrackPlayer_finished() -> void:
+	if _game_over:
+		return
+
+	_current_soundtrack = (_current_soundtrack + 1) % SOUNDTRACKS.size()
+	_soundtrack_player.stream = SOUNDTRACKS[_current_soundtrack]
+	_soundtrack_player.play()
