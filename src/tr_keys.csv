@@ -23,3 +23,6 @@ key_down,Down,Вниз
 key_left,Left,Влево
 key_right,Right,Вправо
 key_system_pause,Pause,Пауза
+ui_format_score,You've scored %d,Вы набрали %d очков
+ui_format_highest_score,Your best is %d,Ваш рекорд %d
+ui_highest_score,Which is your highest score!,И это рекорд!
