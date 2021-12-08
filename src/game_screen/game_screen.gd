@@ -93,7 +93,6 @@ func _order_item() -> void:
 	_animation_player.play("client_enter")
 	_gui.order_progress(_order_progress, _max_order_progress)
 	_gui.reset_for_order(_order_index)
-	
 
 
 func _order_ready() -> void:
@@ -201,7 +200,7 @@ func _on_Client_state_changed(new_state) -> void:
 		Client.ClientState.WAITING_GOOD, \
 		Client.ClientState.WAITING_NORMAL, \
 		Client.ClientState.WAITING_BAD:
-				_animation_player.play("client_talk")
+			_client.talk()
 
 
 func _on_SoundtrackPlayer_finished() -> void:

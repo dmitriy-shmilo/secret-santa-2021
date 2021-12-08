@@ -25,6 +25,7 @@ var mood_decay_speed = 2.0
 onready var _body: Sprite = $"Body"
 onready var _mood_indicator: Sprite = $"MoodIndicator"
 onready var _mood_progress: TextureProgress = $"MoodProgress"
+onready var _animation_player: AnimationPlayer = $"AnimationPlayer"
 
 var _mood = MAX_MOOD
 var _state = ClientState.OFF_SCREEN
@@ -48,11 +49,16 @@ func _process(delta) -> void:
 			emit_signal("state_changed", _state)
 
 
+func talk() -> void:
+	_animation_player.play("client_talk")
+
+
 func start_waiting() -> void:
 	if _state in [ClientState.WAITING_GOOD, ClientState.WAITING_NORMAL, ClientState.WAITING_BAD]:
 		printerr("Client is already waiting")
 		return
 
+	talk()
 	_state = ClientState.WAITING_GOOD
 
 
