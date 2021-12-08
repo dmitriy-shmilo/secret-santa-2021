@@ -14,7 +14,7 @@ ui_sfx_volume,SFX,Эффекты
 ui_speech_volume,Speech,Голос
 ui_start_game,Start,Старт
 ui_settings,Settings,Настройки
-ui_tutorial,Tutorial,Как Играть
+ui_tutorial,How To Play,Как Играть
 ui_credits,Credits,Благодарности
 ui_back_to_title,Back,Назад
 ui_quit,Quit,Выход
@@ -52,4 +52,15 @@ msg_credits,"[font=res://ui/font_large.tres]Font[/font]
 [font=res://ui/font_large.tres]Арт, Звуки и Код[/font]
 - [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url].
 - Исходники доступны на [url=https://github.com/dmitriy-shmilo/secret-santa-2021]гитхабе[/url].
+"
+msg_tutorial,"You play as Hephaestus, blacksmith-god. You're supposed to smith items for other, more powerful gods, who are notorious for their lack of patience.
+
+Use [A] and [D] (by default) to move between bellows and anvil. When manning a station, press [W] and [S] to work the bellows or strike the ingot. Be aware that overdoing it with bellows will melt your ingot, which will reset your progress. Hitting a cold metal will crush it into dust, also resetting your progress.
+
+If you take too long to fulfill a request, an angry god will smite you, ending a run.
+","Вы играете Гефестом, богом-кузнецом. Ваша задача - ковать артефакты для других, более сильных и жутко нетерпеливых богов.
+
+Кнопками [A] и [D] (по умолчанию) передвигайтесь между мехами и наковальней. Кнопками [W] и [S] раздувайте меха или бейте молотом по наковальне. Не раздувайте меха слишком сильно, иначе вы расплавите металл и вам придется начинать с нуля. Не бейте холодный металл, иначе он рассыпется в пыль.
+
+Если вы не успеете закончить артефакт вовремя, то озлобленный бог поразит вас молнией, что закончит вашу партию.
 "
