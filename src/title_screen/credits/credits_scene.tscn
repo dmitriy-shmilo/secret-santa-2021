@@ -30,7 +30,7 @@ margin_bottom = 17.0
 size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "[center]Thank you for playing[/center]"
-text = "Thank you for playing"
+text = "[center]Thank you for playing[/center]"
 __meta__ = {
 "_edit_use_anchors_": false
 }

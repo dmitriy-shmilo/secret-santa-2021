@@ -88,7 +88,6 @@ func get_score() -> float:
 func _reset() -> void:
 	_mood = MAX_MOOD
 	_update_ui()
-	emit_signal("mood_changed", _mood, MAX_MOOD)
 
 
 func _update_ui() -> void:

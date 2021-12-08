@@ -12,9 +12,9 @@ ui_master_volume,Master,Общий
 ui_music_volume,Music,Музыка
 ui_sfx_volume,SFX,Эффекты
 ui_speech_volume,Speech,Голос
-ui_start_game,Start, Старт
-ui_settings,Settings, Настройки
-ui_tutorial,Tutorial, Как Играть
+ui_start_game,Start,Старт
+ui_settings,Settings,Настройки
+ui_tutorial,Tutorial,Как Играть
 ui_credits,Credits,Благодарности
 ui_back_to_title,Back,Назад
 ui_quit,Quit,Выход

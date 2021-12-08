@@ -183,7 +183,6 @@ func _on_Character_bellows_lowered():
 
 
 func _on_Character_died() -> void:
-	_game_over = true
 	_fader.fade_out()
 
 
@@ -195,6 +194,7 @@ func _on_Client_state_changed(new_state) -> void:
 	match new_state:
 		Client.ClientState.DISSATISFIED:
 			if not _game_over:
+				_game_over = true
 				_soundtrack_player.stop()
 				_character.die()
 				_animation_player.play("client_kill")
