@@ -19,6 +19,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 15, 140 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 80 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 306, 140 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 48, 80 )
+
 [node name="TitleScene" parent="." instance=ExtResource( 1 )]
 margin_top = -37.0
 margin_bottom = 79.0
@@ -38,9 +50,6 @@ margin_bottom = 57.0
 [node name="CreditsScene" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="CreditsText" parent="CreditsScene" index="1"]
-text = "Thank you for playing"
-
 [node name="SettingsScene" parent="." instance=ExtResource( 5 )]
 visible = false
 
@@ -54,18 +63,6 @@ margin_top = 36.0
 visible = false
 
 [node name="Fader" parent="." instance=ExtResource( 7 )]
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 15, 140 )
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 112, 48, 80 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 306, 140 )
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 112, 48, 80 )
 
 [node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

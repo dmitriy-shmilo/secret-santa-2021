@@ -1,12 +1,17 @@
-# secret-santa-2021 #
+# HEPH #
 
-A game made with [Godot engine](https://godotengine.org/).
+A [Secret Santa Jam 2021](https://itch.io/jam/secret-santa-2021) entry, made with [Godot engine](https://godotengine.org/). A mini-game, where player plays as Hepaestus tasked to forge stuff for other gods.
 
 # Credits #
 
-## Art ##
-- [Irene Bagachuk](https://www.artstation.com/i_bahachuk)
-- [Dmitriy Shmilo](https://dmitriy-shmilo.itch.io/)
+## Font ##
+- [monogram](https://datagoblin.itch.io/monogram) by datagoblin.
 
-## Code ##
-- [Dmitriy Shmilo](https://dmitriy-shmilo.itch.io/)
+## Music ##
+- "Bit Quest" by [Kevin MacLeod](https://incompetech.com)
+- "Itty Bitty 8 Bbit" by [Kevin MacLeod](https://incompetech.com)
+- "Pixelland" by [Kevin MacLeod](https://incompetech.com)
+
+## Code, Art and SFX ##
+- [Dmitriy Shmilo](https://dmitriy-shmilo.itch.io/).
+- Sources available on [Github](https://github.com/dmitriy-shmilo/secret-santa-2021).

@@ -26,3 +26,30 @@ key_system_pause,Pause,Пауза
 ui_format_score,You've scored %d,Вы набрали %d очков
 ui_format_highest_score,Your best is %d,Ваш рекорд %d
 ui_highest_score,Which is your highest score!,И это рекорд!
+msg_credits,"[font=res://ui/font_large.tres]Font[/font]
+- [url=https://datagoblin.itch.io/monogram]monogram[/url] by datagoblin.
+
+
+[font=res://ui/font_large.tres]Music[/font]
+- "Bit Quest" by [url=https://incompetech.com]Kevin MacLeod[/url].
+- "Itty Bitty 8 Bbit" by [url=https://incompetech.com]Kevin MacLeod[/url].
+- "Pixelland" by [url=https://incompetech.com]Kevin MacLeod[/url].
+
+
+[font=res://ui/font_large.tres]Art, SFX, Code[/font]
+- [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url].
+- Game sources are avaiable on [url=https://github.com/dmitriy-shmilo/secret-santa-2021]github[/url].
+","[font=res://ui/font_large.tres]Шрифт[/font]
+- [url=https://datagoblin.itch.io/monogram]monogram[/url], автор datagoblin.
+
+
+[font=res://ui/font_large.tres]Музыка[/font]
+- "Bit Quest", автор [url=https://incompetech.com]Kevin MacLeod[/url].
+- "Itty Bitty 8 Bbit", автор [url=https://incompetech.com]Kevin MacLeod[/url].
+- "Pixelland", автор [url=https://incompetech.com]Kevin MacLeod[/url].
+
+
+[font=res://ui/font_large.tres]Арт, Звуки и Код[/font]
+- [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url].
+- Исходники доступны на [url=https://github.com/dmitriy-shmilo/secret-santa-2021]гитхабе[/url].
+"

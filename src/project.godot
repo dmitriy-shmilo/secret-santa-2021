@@ -87,7 +87,7 @@ _global_script_class_icons={
 [application]
 
 config/name="secret-santa-2021"
-run/main_scene="res://title_screen/title_screen.tscn"
+run/main_scene="res://splash_screen/splash_screen.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
@@ -165,7 +165,7 @@ right={
 [locale]
 
 locale_filter=[ 1, [ "en", "ru", "uk" ] ]
-translations=PoolStringArray( "res://tr_keys.en.translation" )
+translations=PoolStringArray( "res://tr_keys.en.translation", "res://tr_keys.ru.translation" )
 
 [rendering]
 

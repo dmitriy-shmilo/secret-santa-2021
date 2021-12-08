@@ -7,10 +7,10 @@
 [node name="CreditsScreen" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 100.0
-margin_right = -100.0
-margin_bottom = -100.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -18,28 +18,30 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="."]
-margin_right = 120.0
+margin_right = 304.0
 margin_bottom = 13.0
-text = "Credits"
+text = "ui_credits"
 align = 1
 
 [node name="CreditsText" type="RichTextLabel" parent="."]
 margin_top = 17.0
-margin_right = 120.0
-margin_bottom = 17.0
+margin_right = 304.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "[center]Thank you for playing[/center]"
-text = "[center]Thank you for playing[/center]"
+text = "Thank you for playing"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BackToTitleButton" type="Button" parent="."]
-margin_left = 6.0
-margin_top = 21.0
-margin_right = 114.0
-margin_bottom = 40.0
+margin_left = 97.0
+margin_top = 140.0
+margin_right = 207.0
+margin_bottom = 164.0
 size_flags_horizontal = 4
 shortcut_in_tooltip = false
 shortcut = ExtResource( 3 )
