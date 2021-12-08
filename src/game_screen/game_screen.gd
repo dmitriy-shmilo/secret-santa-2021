@@ -48,6 +48,8 @@ func _ready() -> void:
 	
 	_soundtrack_player.stream = SOUNDTRACKS[_current_soundtrack]
 	_soundtrack_player.play()
+	
+	UserSaveData.current_score = 0
 
 
 func _unhandled_input(event):

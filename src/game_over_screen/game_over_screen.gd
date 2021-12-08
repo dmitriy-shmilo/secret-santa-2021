@@ -7,6 +7,8 @@ func _ready() -> void:
 	_score_label.text = tr("ui_format_score") % UserSaveData.current_score
 	if UserSaveData.current_score >= UserSaveData.highest_score:
 		_highest_score_label.text = tr("ui_highest_score")
+		UserSaveData.highest_score = UserSaveData.current_score
+		UserSaveData.save_data()
 	else:
 		_highest_score_label.text = tr("ui_format_highest_score") % UserSaveData.highest_score
 
