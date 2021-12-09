@@ -5,7 +5,7 @@ const SOUNDTRACKS = [
 	preload("res://assets/audio/soundtrack2.mp3")
 ]
 const CLIENT_COUNT: int = 6
-const MAX_DIFFICULTY: float = 2.5
+const MAX_DIFFICULTY: float = 1.75
 const MIN_DIFFICULTY: float = 0.75
 const HEAT_DECREASE_TIME: float = 1.0
 
@@ -114,7 +114,7 @@ func _order_ready() -> void:
 
 	_gui.order_ready()
 	_gui.score_update(_client.get_score(), _score)
-	_difficulty = clamp(_difficulty * 1.08, 0.0, MAX_DIFFICULTY)
+	_difficulty = clamp(_difficulty + (MAX_DIFFICULTY - _difficulty) / 12.0, 0.0, MAX_DIFFICULTY)
 	
 	_heat_decrease_timer.wait_time = HEAT_DECREASE_TIME / _difficulty
 	_client.mood_decay_speed *= _difficulty
@@ -127,6 +127,7 @@ func _order_break() -> void:
 	_gui.order_progress(_order_progress, _max_order_progress)
 	_gui.heat_update(_heat, _max_heat)
 	_forge.heat_update(_heat, _max_heat)
+	_client.irritate(5.0 * _difficulty)
 
 
 func _next_order_index() -> int:

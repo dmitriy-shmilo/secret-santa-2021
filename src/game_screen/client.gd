@@ -71,6 +71,11 @@ func go_offscreen() -> void:
 	_reset()
 
 
+func irritate(amount: float) -> void:
+	_mood -= amount
+	_update_ui()
+
+
 func satisfy() -> void:
 	if not _state in [ClientState.WAITING_GOOD, ClientState.WAITING_NORMAL, ClientState.WAITING_BAD]:
 		printerr("Can't satisfy client while not waiting")
